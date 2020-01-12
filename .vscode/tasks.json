@@ -1,0 +1,69 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        /*{
+            "label": "G++ build",
+            "type": "shell",
+            "command": "g++",
+            "args": ["-g", "MyProgram/main.cpp",
+                    "-o", "build/CMake_proj.exe"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+        "label": "Cmake build",
+        "type": "shell",
+        "command": "cmake",
+        "args": ["--build", "."],
+        "options": {
+            "cwd": "${workspaceFolder}/build"
+        },
+        "group": {
+            "kind": "build",
+            "isDefault": true
+            }
+        },*/
+        {
+            "label": "Cmake Debug",
+            "type": "shell",
+            "command": "CMake",
+            "args": ["-G", "'NMake Makefiles'", "-DCMAKE_BUILD_TYPE=Debug", ".."],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+                }
+        },
+        {
+            "label": "Cmake Release",
+            "type": "shell",
+            "command": "CMake",
+            "args": ["-G", "'NMake Makefiles'", "-DCMAKE_BUILD_TYPE=Release", ".."],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+                }
+        },
+        {
+            "label": "Make",
+            "type": "shell",
+            "command": "nmake",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
