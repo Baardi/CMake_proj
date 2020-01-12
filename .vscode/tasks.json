@@ -31,7 +31,8 @@
             "label": "Cmake Debug",
             "type": "shell",
             "command": "CMake",
-            "args": ["-G", "'NMake Makefiles'", "-DCMAKE_BUILD_TYPE=Debug", ".."],
+            //"args": ["-G", "'NMake Makefiles'", "-DCMAKE_BUILD_TYPE=Debug", ".."],
+            "args": ["-GNinja", "'NMake Makefiles'", "-DCMAKE_BUILD_TYPE=Debug", ".."],
             "options": {
                 "cwd": "${workspaceFolder}/.build"
             },
@@ -44,7 +45,8 @@
             "label": "Cmake Release",
             "type": "shell",
             "command": "CMake",
-            "args": ["-G", "'NMake Makefiles'", "-DCMAKE_BUILD_TYPE=Release", ".."],
+            //"args": ["-G", "'NMake Makefiles'", "-DCMAKE_BUILD_TYPE=Release", ".."],
+            "args": ["-GNinja", "'NMake Makefiles'", "-DCMAKE_BUILD_TYPE=Release", ".."],
             "options": {
                 "cwd": "${workspaceFolder}/.build"
             },
@@ -56,7 +58,8 @@
         {
             "label": "Make",
             "type": "shell",
-            "command": "nmake",
+            //"command": "nmake",
+            "command": "ninja",
             "options": {
                 "cwd": "${workspaceFolder}/.build"
             },
