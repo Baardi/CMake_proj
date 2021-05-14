@@ -3,70 +3,106 @@
     // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
-        /*{
-            "label": "G++ build",
-            "type": "shell",
-            "command": "g++",
-            "args": ["-g", "MyProgram/main.cpp",
-                    "-o", "build/CMake_proj.exe"],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
         {
-        "label": "Cmake build",
-        "type": "shell",
-        "command": "cmake",
-        "args": ["--build", "."],
-        "options": {
-            "cwd": "${workspaceFolder}/build"
-        },
-        "group": {
-            "kind": "build",
-            "isDefault": true
-            }
-        },*/
-        {
-            "label": "Cmake Debug",
+            "label": "Cmake Debug x64",
             "type": "shell",
             "command": "CMake",
-            //"args": ["-G", "'NMake Makefiles'", "-DCMAKE_BUILD_TYPE=Debug", ".."],
-            "args": ["-GNinja", "'NMake Makefiles'", "-DCMAKE_BUILD_TYPE=Debug", ".."],
+            "args": [
+                "-G",
+                "'MinGW Makefiles'",
+                "-DCMAKE_C_COMPILER=GCC",
+                "-DCMAKE_CXX_COMPILER=G++",
+                //"-DCMAKE_C_COMPILER_FORCED=TRUE",
+                //"-DCMAKE_CXX_COMPILER_FORCED=TRUE",
+				//"-DCMAKE_EXE_LINKER_FLAGS=/machine:x64",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                ".."
+            ],
             "options": {
                 "cwd": "${workspaceFolder}/.build"
             },
             "group": {
                 "kind": "build",
                 "isDefault": true
-                }
+            }
         },
         {
-            "label": "Cmake Release",
+            "label": "Cmake Release x64",
             "type": "shell",
             "command": "CMake",
-            //"args": ["-G", "'NMake Makefiles'", "-DCMAKE_BUILD_TYPE=Release", ".."],
-            "args": ["-GNinja", "'NMake Makefiles'", "-DCMAKE_BUILD_TYPE=Release", ".."],
+            "args": [
+                "-G",
+                "'MinGW Makefiles'",
+                "-DCMAKE_C_COMPILER=GCC",
+                "-DCMAKE_CXX_COMPILER=G++",
+                //"-DCMAKE_C_COMPILER_FORCED=TRUE",
+                //"-DCMAKE_CXX_COMPILER_FORCED=TRUE",
+				//"-DCMAKE_EXE_LINKER_FLAGS=/machine:x64",
+                "-DCMAKE_BUILD_TYPE=Release",
+                ".."
+            ],
             "options": {
                 "cwd": "${workspaceFolder}/.build"
             },
             "group": {
                 "kind": "build",
                 "isDefault": true
-                }
+            }
+        },
+        {
+            "label": "Clear Build folder",
+            "type": "shell",
+            "command": "Remove-Item -Path \"./*\" -Recurse",  
+            "options": {
+                "cwd": "${workspaceFolder}/.build"
+            },
         },
         {
             "label": "Make",
             "type": "shell",
-            //"command": "nmake",
-            "command": "ninja",
+            "command": "mingw32-make",
             "options": {
                 "cwd": "${workspaceFolder}/.build"
             },
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build g++ Debug x64",
+            "dependsOn": ["Cmake Debug x64"],
+            "type": "shell",
+            "command": "mingw32-make",
+            "options": {
+                "cwd": "${workspaceFolder}/.build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build g++ Release x64",
+            "dependsOn": ["Cmake Release x64"],
+            "type": "shell",
+            "command": "mingw32-make",
+            "options": {
+                "cwd": "${workspaceFolder}/.build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
         }
     ]
 }

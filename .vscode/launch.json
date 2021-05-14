@@ -5,10 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(Window) Debug Launch",
+            "name": "gcc Debug x64 Launch",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/.build/Debug/Cmake_proj.exe",
+            "preLaunchTask": "Build g++ Debug x64",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -25,10 +26,11 @@
             ]
         },
         {
-            "name": "(Window) Release Launch",
+            "name": "gcc Release x64 Launch",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/.build/Release/Cmake_proj.exe",
+            "preLaunchTask": "Build g++ Release x64",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

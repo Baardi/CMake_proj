@@ -3,7 +3,8 @@
         {
             "name": "GCC X64",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/say-hello/src"
             ],
             "defines": [
                 "_DEBUG",
@@ -14,8 +15,7 @@
             "compilerPath": "g++.exe",
             "cStandard": "c11",
             "cppStandard": "c++20",
-            "intelliSenseMode": "gcc-x64",
-            "compileCommands": "${workspaceFolder}/.build/compile_commands.json",
+            "intelliSenseMode": "windows-gcc-x64",
             "configurationProvider": "vector-of-bool.cmake-tools"
         }
     ],
