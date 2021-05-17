@@ -10,5 +10,8 @@ set (EXECUTABLE_OUTPUT_PATH ../${CMAKE_BUILD_TYPE})
 include(CTest)
 enable_testing()
 
+LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/../SFML)
+TARGET_LINK_LIBRARIES(GLBall mylib)
+
 add_subdirectory(say-hello)
 add_subdirectory(MyProgram)

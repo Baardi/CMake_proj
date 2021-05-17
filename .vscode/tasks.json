@@ -50,6 +50,29 @@
             }
         },
         {
+            "label": "Cmake MSVC Debug x64",
+            "type": "shell",
+            "command": "CMake",
+            "args": [
+                "-G",
+                "Ninja",
+                "-DCMAKE_C_COMPILER=cl",
+                "-DCMAKE_CXX_COMPILER=cl",
+                //"-DCMAKE_C_COMPILER_FORCED=TRUE",
+                //"-DCMAKE_CXX_COMPILER_FORCED=TRUE",
+				//"-DCMAKE_EXE_LINKER_FLAGS=/machine:x64",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                ".."
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/.build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
             "label": "Clear Build folder",
             "type": "shell",
             "command": "Remove-Item -Path \"./*\" -Recurse",  
@@ -93,6 +116,22 @@
             "dependsOn": ["Cmake Release x64"],
             "type": "shell",
             "command": "mingw32-make",
+            "options": {
+                "cwd": "${workspaceFolder}/.build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build MSVC Debug x64",
+            "dependsOn": ["vcvarsall x64", "Cmake MSVC Debug x64"],
+            "type": "shell",
+            "command": "ninja",
             "options": {
                 "cwd": "${workspaceFolder}/.build"
             },

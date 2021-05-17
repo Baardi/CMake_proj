@@ -1,4 +1,7 @@
-add_executable(Cmake_proj main.cpp)
+add_executable(Cmake_proj 
+    main.cpp 
+    MyClass.hpp 
+    MyClass.cpp)
 
 target_link_libraries(Cmake_proj PRIVATE say-hello)
 

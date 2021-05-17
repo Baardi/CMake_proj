@@ -45,6 +45,27 @@
                     "ignoreFailures": true
                 }
             ]
+        },        
+        {
+            "name": "MSVC Debug x64 Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/.build/Release/Cmake_proj.exe",
+            "preLaunchTask": "Build MSVC Debug x64",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            //"MIMode": "gdb",
+            //"miDebuggerPath": "gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
         }
     ]
 }
