@@ -48,24 +48,27 @@
         },        
         {
             "name": "MSVC Debug x64 Launch",
-            "type": "cppdbg",
+            "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/.build/Release/Cmake_proj.exe",
+            "program": "${workspaceFolder}/.build/Debug/Cmake-proj.exe",
             "preLaunchTask": "Build MSVC Debug x64",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": false,
-            //"MIMode": "gdb",
-            //"miDebuggerPath": "gdb.exe",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ]
+            "externalConsole": false
+        },
+        {
+            "name": "MSVC Release x64 Launch",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/.build/Release/Cmake-proj.exe",
+            "preLaunchTask": "Build MSVC Release x64",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false
         }
     ]
 }

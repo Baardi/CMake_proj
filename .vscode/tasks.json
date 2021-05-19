@@ -12,9 +12,6 @@
                 "'MinGW Makefiles'",
                 "-DCMAKE_C_COMPILER=GCC",
                 "-DCMAKE_CXX_COMPILER=G++",
-                //"-DCMAKE_C_COMPILER_FORCED=TRUE",
-                //"-DCMAKE_CXX_COMPILER_FORCED=TRUE",
-				//"-DCMAKE_EXE_LINKER_FLAGS=/machine:x64",
                 "-DCMAKE_BUILD_TYPE=Debug",
                 ".."
             ],
@@ -35,9 +32,6 @@
                 "'MinGW Makefiles'",
                 "-DCMAKE_C_COMPILER=GCC",
                 "-DCMAKE_CXX_COMPILER=G++",
-                //"-DCMAKE_C_COMPILER_FORCED=TRUE",
-                //"-DCMAKE_CXX_COMPILER_FORCED=TRUE",
-				//"-DCMAKE_EXE_LINKER_FLAGS=/machine:x64",
                 "-DCMAKE_BUILD_TYPE=Release",
                 ".."
             ],
@@ -50,19 +44,13 @@
             }
         },
         {
-            "label": "Cmake MSVC Debug x64",
+            "label": "Cmake MSVC",
             "type": "shell",
-            "command": "CMake",
+            "command": "cmake",
             "args": [
+                "..",
                 "-G",
-                "Ninja",
-                "-DCMAKE_C_COMPILER=cl",
-                "-DCMAKE_CXX_COMPILER=cl",
-                //"-DCMAKE_C_COMPILER_FORCED=TRUE",
-                //"-DCMAKE_CXX_COMPILER_FORCED=TRUE",
-				//"-DCMAKE_EXE_LINKER_FLAGS=/machine:x64",
-                "-DCMAKE_BUILD_TYPE=Debug",
-                ".."
+                "'Visual Studio 16 2019'"
             ],
             "options": {
                 "cwd": "${workspaceFolder}/.build"
@@ -129,9 +117,15 @@
         },
         {
             "label": "Build MSVC Debug x64",
-            "dependsOn": ["vcvarsall x64", "Cmake MSVC Debug x64"],
+            "dependsOn": ["vcvars64", "Cmake MSVC"],
             "type": "shell",
-            "command": "ninja",
+            "command": "cmake",
+            "args": [
+                "--build",
+                ".",
+                "--config",
+                "Debug"
+            ],
             "options": {
                 "cwd": "${workspaceFolder}/.build"
             },
@@ -140,8 +134,43 @@
                 "isDefault": true
             },
             "problemMatcher": [
-                "$gcc"
+                "$msCompile"
             ]
+        },
+        {
+            "label": "Build MSVC Release x64",
+            "dependsOn": ["vcvars64", "Cmake MSVC"],
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                ".",
+                "--config",
+                "Release"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/.build"
+            },
+            "group": {
+                "kind": "build",
+                
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },        
+        {
+            "label": "vcvars64",
+            "type": "shell",
+            "command": "vcvars64",
+            "options": {
+                "cwd": "${workspaceFolder}/.build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
