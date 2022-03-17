@@ -1,0 +1,8 @@
+Step 1: Compile main.c with compiler of your choosing
+
+Optionally
+
+Step 1: Configure/build CmakeLists.txt with cmake + generator of your choosing. Can lower the cmake version required quite a lot and it would still work. If that is a hassle, just compile main.c directly
+-------
+
+Tested to work with gcc 10.3 and Visual Studio 16.10 (2019), but probably works with most compilers after the year 2000.

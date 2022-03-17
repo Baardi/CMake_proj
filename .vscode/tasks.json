@@ -4,39 +4,18 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Cmake Debug x64",
+            "label": "Cmake GCC",
             "type": "shell",
             "command": "CMake",
             "args": [
                 "-G",
                 "'MinGW Makefiles'",
-                "-DCMAKE_C_COMPILER=GCC",
-                "-DCMAKE_CXX_COMPILER=G++",
-                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_C_COMPILER=gcc",
+                "-DCMAKE_CXX_COMPILER=g++",
                 ".."
             ],
             "options": {
-                "cwd": "${workspaceFolder}/.build"
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "label": "Cmake Release x64",
-            "type": "shell",
-            "command": "CMake",
-            "args": [
-                "-G",
-                "'MinGW Makefiles'",
-                "-DCMAKE_C_COMPILER=GCC",
-                "-DCMAKE_CXX_COMPILER=G++",
-                "-DCMAKE_BUILD_TYPE=Release",
-                ".."
-            ],
-            "options": {
-                "cwd": "${workspaceFolder}/.build"
+                "cwd": "${workspaceFolder}/.build",
             },
             "group": {
                 "kind": "build",
@@ -48,9 +27,11 @@
             "type": "shell",
             "command": "cmake",
             "args": [
-                "..",
                 "-G",
-                "'Visual Studio 16 2019'"
+                "'Visual Studio 16 2019'",
+                "-DCMAKE_C_COMPILER=cl",
+                "-DCMAKE_CXX_COMPILER=cl",
+                ".."
             ],
             "options": {
                 "cwd": "${workspaceFolder}/.build"
@@ -69,25 +50,16 @@
             },
         },
         {
-            "label": "Make",
-            "type": "shell",
-            "command": "mingw32-make",
-            "options": {
-                "cwd": "${workspaceFolder}/.build"
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
-        {
             "label": "Build g++ Debug x64",
-            "dependsOn": ["Cmake Debug x64"],
+            "dependsOn": ["Cmake GCC"],
             "type": "shell",
-            "command": "mingw32-make",
+            "command": "cmake",
+            "args": [
+                "--build",
+                ".",
+                "--config",
+                "Debug"
+            ],
             "options": {
                 "cwd": "${workspaceFolder}/.build"
             },
@@ -101,9 +73,15 @@
         },
         {
             "label": "Build g++ Release x64",
-            "dependsOn": ["Cmake Release x64"],
+            "dependsOn": ["Cmake GCC"],
             "type": "shell",
-            "command": "mingw32-make",
+            "command": "cmake",
+            "args": [
+                "--build",
+                ".",
+                "--config",
+                "Release"
+            ],
             "options": {
                 "cwd": "${workspaceFolder}/.build"
             },
@@ -117,7 +95,7 @@
         },
         {
             "label": "Build MSVC Debug x64",
-            "dependsOn": ["vcvars64", "Cmake MSVC"],
+            "dependsOn": ["Cmake MSVC"],
             "type": "shell",
             "command": "cmake",
             "args": [
@@ -139,7 +117,7 @@
         },
         {
             "label": "Build MSVC Release x64",
-            "dependsOn": ["vcvars64", "Cmake MSVC"],
+            "dependsOn": ["Cmake MSVC"],
             "type": "shell",
             "command": "cmake",
             "args": [
@@ -153,24 +131,11 @@
             },
             "group": {
                 "kind": "build",
-                
                 "isDefault": true
             },
             "problemMatcher": [
                 "$msCompile"
             ]
-        },        
-        {
-            "label": "vcvars64",
-            "type": "shell",
-            "command": "vcvars64",
-            "options": {
-                "cwd": "${workspaceFolder}/.build"
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
         }
     ]
 }
